@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ESP Wi-Fi Setup</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    form {
+      display: inline-block;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+    input[type="text"], input[type="password"], input[type="submit"] {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    input[type="text"], input[type="password"] {
+      width: 250px;
+    }
+    input[type="submit"] {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #218838;
+    }
+    .password-container {
+      position: relative;
+      display: inline-block;
+    }
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <h1>ESP32 Wi-Fi Setup</h1>
+  <p>Enter your Wi-Fi credentials:</p>
+  <form action="/connect" method="post">
+    <input type="text" name="ssid" placeholder="Wi-Fi SSID" required><br>
+    <div class="password-container">
+      <input type="password" name="password" id="password" placeholder="Wi-Fi Password">
+      <button type="button" class="toggle-password" onclick="togglePassword()">Show</button>
+    </div><br>
+    <input type="submit" value="Connect">
+  </form>
+
+  <script>
+    function togglePassword() {
+      var pwd = document.getElementById("password");
+      var toggle = document.querySelector(".toggle-password");
+      if (pwd.type === "password") {
+        pwd.type = "text";
+        toggle.textContent = "Hide";
+      } else {
+        pwd.type = "password";
+        toggle.textContent = "Show";
+      }
+    }
+  </script>
+</body>
+</html>
